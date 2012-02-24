@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Alright, here's some features that should be implemented:
 
 1. recursively search in a given dir (script should accept as command line argument)
@@ -11,3 +12,6 @@ Alright, here's some features that should be implemented:
 Extra/optional/in-the-future
 4. setup command line switches for script to accept arguments 
 5. Create gui version?
+=======
+Testing what forking does blah blah blah blah
+>>>>>>> 0de954cf238eb7cdf491f8333b291ac10e5fe819
