@@ -19,3 +19,8 @@ TODO list:
 
 1. Add code to scan files from other script
 2. Look into helpful python modules
+
+IMPORTANT!
+
+Need operation, method, or algorithm to output name for creating directories base on matching words in the title of files found. 
+If a file does not share a title then it could be moved to an "unsorted" folder to be renamed manually.
