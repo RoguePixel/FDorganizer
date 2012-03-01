@@ -31,23 +31,64 @@ def listaudiofiles(root=os.getcwd()):
 
 #generates operable list of unformatted string data from listaudofiles
 songlist=list(f for f in listaudiofiles(arg[1]))
-#compiles list of filepaths from songlist
-songlistformatted=list(song[2] for song in sorted(songlist))
+
 
 #may be tricky to change code later if function only accepts select strings from specific list?
-for song in songlist:
-	if (song[1])[1]==".mp3":
-		#print song[2]
-		##had to check if file path string was true
-		#print os.path.isfile(i) 
-		x=mp3(song[2])
-		if not x.get('TIT2'):
-			#create function to assign metadata to file based info from filename
-	 		print "no title metadata for: %s" % (song[1])[0]
-		else:
-			#prints pretty formatted metadata of mp3 files (temporary. Just to see if working)
-			artist,album,songname = (x.get('TPE1'),x.get('TALB'),x.get('TIT2'))
-			print "%s - %s - %s" % (artist,album,songname)
+
+def mp3parse(listob):
+	for song in sorted(listob):
+		#modify indiced if just using a list
+		if (song[1])[1]==".mp3":
+			smp3=mp3(song[2])
+			s=song[2]
+			artist,album,title = (smp3.get('TPE1'),smp3.get('TALB'),smp3.get('TIT2'))
+			#weeds out files with incomplete metadata
+			if not title:
+				#create function to assign metadata to file based info from filename
+				#?move files to dir for orphaned or files with no metadata? 
+		 		pass
+		 		#print "no title metadata for: %s" % (song[1])[0]
+			elif not album:
+				#move file to orphaned file dir
+				pass
+			elif not artist:
+				#move file to orphaned file dir
+				pass
+			else:
+				#prints pretty formatted metadata of mp3 files (temporary. Just to see if working)
+				#yield "%s - %s - %s \n %s \n" % (artist,album,songname,s)
+				yield artist
+
+artistlist=list(i for i in mp3parse(songlist))
+
+#list is in unicode format!! List cannot be sorted unless formatted!!
+
+#alistformatted=sorted(artistlist) #<<<< doesn't work!
+
+print str(alistformatted)
+
+#testing to see if printed strings are in alphabetical order
+# n=0
+# for i in alistformatted:
+# 	n+=1
+#  	print n,i 
+
+#NEED SOME METHOD OF COMPARING ITEMS IN LIST 
+
+# for i in range(1,len(artistlist)):
+# 	for s in artistlist[i]:
+# 		if s==artistlist[i]:
+# 			print i,s
+
+#print(len(artistlist))
+
+#TODO
+#1.make dir of artist name 
+#2.compare names from list 
+#3.count comparison 
+#4.if less then 2 match delete	
+
+#1. add parsing of flac and mp4 and other codecs to mp3parse function
 
 #create artist name dir and album name subdir from metadata if more then one file found with matching id3 data
 
